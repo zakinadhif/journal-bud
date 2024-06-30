@@ -1,34 +1,33 @@
-import { Message, contin } from "ai/react";
+"use client"
 
-function MessageBubble({
-  message
-}: {
-  message: Message
-}) {
-  return (
-    <div key={message.id}>
-      <p className="font-semibold">{message.role === "user" ? "User" : "Assistant"}</p>
-      <p>{message.content}</p>
-    </div>
-  )
-}
+import { useChat } from "ai/react"
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 export function Chat() {
+  const { messages, input, handleInputChange, handleSubmit } = useChat();
 
   return (
-    <>
-    {
-      messages.map(message => <MessageBubble message={message} />)
-    }
-    <form onSubmit={handleSubmit}>
-      <input
-        name="prompt"
-        value={input}
-        onChange={handleInputChange}
-        id="input"
-      />
-      <button type="submit">Submit</button>
-    </form>
-    </>
+    <div>
+      {messages.map(m => (
+        <div key={m.id}>
+          <p className="font-bold">{m.role === 'user' ? "User: ": "AI: "}</p>
+          <p>
+            {m.content}
+          </p>
+        </div>
+      ))}
+
+      <form onSubmit={handleSubmit}>
+        <Input
+          value={input}
+          onChange={handleInputChange}
+          placeholder="Say something..."
+        />
+        <Button type="submit">
+          Send
+        </Button>
+      </form>
+    </div>
   )
 }
