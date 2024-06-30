@@ -1,4 +1,4 @@
-import { Message, useChat } from "ai/react";
+import { Message, contin } from "ai/react";
 
 function MessageBubble({
   message
@@ -14,9 +14,6 @@ function MessageBubble({
 }
 
 export function Chat() {
-  const { messages, input, handleSubmit, handleInputChange  } = useChat({
-    api: "api/chat"
-  });
 
   return (
     <>
