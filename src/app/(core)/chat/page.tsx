@@ -6,7 +6,7 @@ export default function Page() {
   const name = "Zaki Nadhif";
 
   return (
-    <main className="relative grow">
+    <main className="container grow flex flex-col">
       <Chat />
     </main>
   );
