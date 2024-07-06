@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Message } from "ai";
+import Markdown from "react-markdown";
 
 export function MessageBubble({
   message
@@ -9,10 +10,8 @@ export function MessageBubble({
   const { role } = message;
 
   return (
-    <div className={cn("border rounded-xl p-2 w-fit mb-4 max-w-[75%]", role === "user" && "ml-auto")}>
-      <p>
-        {message.content}
-      </p>
+    <div className={cn("border rounded-xl p-4 w-fit mb-4 max-w-[75%]", role === "user" && "ml-auto")}>
+      <Markdown>{message.content}</Markdown>
     </div>
   )
 }
