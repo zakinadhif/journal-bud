@@ -1,9 +1,18 @@
 "use client"
 
 import Link from "next/link";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 const getInitials = (name: string) => {
   return name.split(" ").map((word) => word[0]).join("");
@@ -34,10 +43,21 @@ export function Navbar() {
             Login
           </Button>
         ) : (
-          <Avatar>
-            <AvatarImage src={session.data?.user?.image || ""} alt={session.data?.user?.name || ""} />
-            <AvatarFallback>{getInitials(session.data?.user?.name || "")}</AvatarFallback>
-          </Avatar>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Avatar>
+                <AvatarImage src={session.data?.user?.image || ""} alt={session.data?.user?.name || ""} />
+                <AvatarFallback>{getInitials(session.data?.user?.name || "")}</AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => signOut()}>
+                Log out
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         )}
       </nav>
     </header>
