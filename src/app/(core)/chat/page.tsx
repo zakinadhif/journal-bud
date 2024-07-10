@@ -1,10 +1,9 @@
 import { Chat } from "@/components/chat/chat";
-import { Input } from "@/components/ui/input";
-import { SendHorizontalIcon, SendIcon } from "lucide-react";
+
+export const dynamic = 'force-dynamic';
+export const maxDuration = 30;
 
 export default function Page() {
-  const name = "Zaki Nadhif";
-
   return (
     <main className="container grow flex flex-col">
       <Chat />
