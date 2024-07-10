@@ -27,9 +27,9 @@ export const initTodayConversation = serverAction(async () => {
 }, "GET_TODAY_CONVERSATION");
 
 export const continueConversation = serverAction(async ({
-  text
+  inquiry
 }: {
-  text: string
+  inquiry: string
 }) => {
   const session = await auth();
 
@@ -47,10 +47,11 @@ export const continueConversation = serverAction(async ({
       content: message.content
     })).concat({
       role: 'user',
-      content: text
+      content: inquiry
     }),
-    onFinish: async ({ text }) => {
-      await createMessage(conversation.id, 'assistant', text);
+    onFinish: async ({ text: answer }) => {
+      await createMessage(conversation.id, 'user', inquiry);
+      await createMessage(conversation.id, 'assistant', answer);
     }
   });
 

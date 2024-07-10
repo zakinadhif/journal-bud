@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
-import { Message } from "ai";
 import Markdown from "react-markdown";
+import { Message } from "../../../database/schema";
 
 export function MessageBubble({
   message

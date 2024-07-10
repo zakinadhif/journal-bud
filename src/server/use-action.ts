@@ -14,3 +14,4 @@ export async function unwrapAction<T>(result: Promise<ServerActionResult<T>>): P
 
   return awaited.data;
 }
+export type ActionResult<T extends (...args: any) => any> = Extract<Awaited<ReturnType<T>>, { success: true }>["data"];

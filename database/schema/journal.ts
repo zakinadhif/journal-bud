@@ -13,6 +13,8 @@ export const conversations = pgTable("conversation", {
 
   ...chrono
 })
+export type Conversation = typeof conversations.$inferSelect;
+export type NewConversation = typeof conversations.$inferInsert;
 
 // Tool isn't supported yet
 export const messageRoleEnum = pgEnum("messageRole", ['system', 'user', 'assistant', /* 'tool' */]);
@@ -28,6 +30,8 @@ export const messages = pgTable("message", {
 
   ...chrono
 })
+export type Message = typeof messages.$inferSelect;
+export type NewMessage = typeof messages.$inferInsert;
 
 export const journals = pgTable("journal", {
   id: text("id")
@@ -41,3 +45,5 @@ export const journals = pgTable("journal", {
 
   ...chrono
 })
+export type Journal = typeof journals.$inferSelect;
+export type NewJournal = typeof journals.$inferInsert;

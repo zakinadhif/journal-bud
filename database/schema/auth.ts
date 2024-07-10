@@ -16,7 +16,9 @@ export const users = pgTable("user", {
   email: text("email").notNull(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
-})
+});
+export type User = typeof users.$inferSelect;
+export type NewUser = typeof users.$inferInsert;
  
 export const accounts = pgTable(
   "account",
