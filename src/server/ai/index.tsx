@@ -18,11 +18,7 @@ export interface ClientMessage {
   display: React.ReactNode;
 }
 
-export async function continueConversation({
-  input
-}: {
-  input: string
-}): Promise<ClientMessage> {
+export async function continueConversation(input: string): Promise<ClientMessage> {
   "use server"
 
   const history = getMutableAIState();
