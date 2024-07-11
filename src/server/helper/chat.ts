@@ -1,6 +1,6 @@
 import { db } from "../../../database";
 import { ServerActionError } from "../action";
-import { conversations, messageRoleEnum, messages as messagesSchema } from "../../../database/schema";
+import { conversations, messages as messagesSchema } from "../../../database/schema";
 import { and, eq, gte, lte } from "drizzle-orm";
 
 export const getTodayConversation = async (userId: string) => {
